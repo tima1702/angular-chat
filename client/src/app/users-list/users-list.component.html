@@ -1,7 +1,7 @@
 <div *ngIf="users.length > 0">
   <mat-list class="users-list" *ngFor="let user of users">
     <mat-list-item class="users-list__item">
-      <mat-icon mat-list-icon><img src="{{ user.avatarUrl }}" alt="{{ user.name }}'s avatar"></mat-icon>
+      <mat-icon mat-list-icon><img class="user-avatar" src="{{ user.avatarUrl }}" alt="{{ user.name }}'s avatar"></mat-icon>
       <h4 mat-line>{{ user.name }}</h4>
     </mat-list-item>
   </mat-list>

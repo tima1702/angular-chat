@@ -34,6 +34,7 @@ io.on('connection', socket => {
 
     socket.on('join', msg => {
         const userData = JSON.parse(msg);
+        if (hasId(users, userData.id)) return;
         users.push(userData);
         const data = {
             userData,
@@ -74,3 +75,12 @@ io.on('connection', socket => {
         }))
     })
 });
+
+function hasId(array, id){
+    for (let i = 0; i < array.length; i++){
+        if (array[i].id === id){
+            return true;
+        }
+    }
+    return false;
+}
