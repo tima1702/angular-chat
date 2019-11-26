@@ -27,7 +27,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   messageForm: FormGroup;
   dialogRef: MatDialogRef<UserDialogComponent> | null;
   isSupportOnline: boolean = false;
-  // isTyping: any;
 
   @ViewChild('chatHistory', { static: false }) chatHistory: ElementRef;
 
@@ -127,13 +126,5 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         name: this.user.name
       }
     });
-  }
-
-  onKey(event: KeyboardEvent) {
-    // console.log(event);
-    // this.isTyping = true;
-    // setTimeout(() => {
-    //   this.isTyping = false;
-    // }, 2000);
   }
 }

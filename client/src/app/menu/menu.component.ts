@@ -38,5 +38,4 @@ export class MenuComponent implements OnInit {
     this.socketService.leaveChat(this.user);
     this.router.navigate(['/login']);
   }
-
 }

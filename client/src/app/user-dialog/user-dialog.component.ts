@@ -38,5 +38,4 @@ export class UserDialogComponent implements OnInit {
     this.socketService.changeUsername(oldUser, newUser);
     this.userService.setUser(newUser);
   }
-
 }
