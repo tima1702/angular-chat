@@ -1,1 +1,13 @@
-test
+<mat-drawer-container class="app">
+  <nav class="app__nav">
+
+    <button mat-icon-button (click)="drawer.toggle()">
+      <i class="material-icons">menu</i>
+    </button>
+  </nav>
+  <mat-drawer #drawer class="app-sidenav" mode="side">
+
+  </mat-drawer>
+
+  <router-outlet></router-outlet>
+</mat-drawer-container>
