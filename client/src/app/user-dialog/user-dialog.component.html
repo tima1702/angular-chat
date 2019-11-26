@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Edit user {{ data.name }}</h2>
+<mat-dialog-content>
+  <form class="user-dialog__form" [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+    <mat-form-field class="user-dialog__form-field">
+      <input matInput placeholder="Username" formControlName="username">
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button type="submit" color="primary">Save</button>
+    </div>
+  </form>
+</mat-dialog-content>
