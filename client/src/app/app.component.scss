@@ -1,0 +1,11 @@
+@import './shared/styles/variables';
+
+.app {
+  height: 100vh;
+
+  &__nav {
+    width: 100%;
+    background: $color-blue;
+    color: $color-white;
+  }
+}
