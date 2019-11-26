@@ -27,4 +27,50 @@ server.listen(PORT, () => {
 io.on('connection', socket => {
     const subscribe = redis.createClient();
     subscribe.subscribe('pubsub');
+
+    subscribe.on('message', (channel, message) => {
+        socket.send(message)
+    });
+
+    socket.on('join', msg => {
+        const userData = JSON.parse(msg);
+        users.push(userData);
+        const data = {
+            userData,
+            users
+        };
+        client.publish('pubsub', JSON.stringify({
+            type: 'user',
+            msg: data
+        }));
+    });
+
+    socket.on('message', msg => {
+        const data = JSON.parse(msg);
+        messages.push(data);
+        client.publish('pubsub', JSON.stringify({
+            type: 'message',
+            msg: data
+        }))
+    });
+
+    socket.on('changeUsername', msg => {
+        client.publish('pubsub', JSON.stringify({
+            type: 'changeName',
+            msg: msg
+        }))
+    });
+
+    socket.on('leave', msg => {
+        const userData = JSON.parse(msg);
+        users = users.filter(user => user.id !== userData['id']);
+        const data = {
+            userData,
+            users
+        };
+        client.publish('pubsub', JSON.stringify({
+            type: 'leave',
+            msg: data
+        }))
+    })
 });

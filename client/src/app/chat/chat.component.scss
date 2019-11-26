@@ -1,0 +1,132 @@
+@import "../shared/styles/variables";
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 95%;
+  padding: 0 1rem;
+  position: relative;
+
+  &__header {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__history {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0 1rem 2rem;
+
+    & > :first-child {
+      margin-top: auto !important;
+    }
+  }
+
+  &__notification {
+    text-align: center;
+    background: $color-smoke;
+    width: 50%;
+    border-radius: 1rem;
+    margin: .5rem auto;
+    padding: .5rem;
+  }
+
+  &__form-field {
+    width: 100%;
+    display: flex;
+    margin: 1rem 0;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__form-input {
+    width: 100%;
+    margin-right: 1rem;
+  }
+
+  &__form-submit {
+    height: 2.5rem;
+  }
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &--self {
+    align-items: flex-end;
+  }
+}
+
+.message {
+  border-radius: .5rem;
+  background: $color-blue;
+  box-shadow: 0 0 .3rem rgba(0, 0, 0, .3);
+  color: $color-white;
+  position: relative;
+  margin: .5rem 2rem .5rem 0;
+  max-width: 60%;
+  float: left;
+  min-width: 5rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -.8rem;
+    left: 1rem;
+    border-right: .8rem solid transparent;
+    border-top: .8rem solid $color-blue;
+  }
+
+  &__header {
+    display: flex;
+    font-size: .8rem;
+  }
+
+  &__author {
+    color: $color-sand;
+    width: 100%;
+    padding-right: .5rem;
+  }
+
+  &__text {
+    overflow-wrap: break-word;
+  }
+
+  &__avatar {
+    margin-top: .5rem;
+    width: 3rem;
+    border-radius: 50%;
+    background: $color-smoke;
+
+    &--self {
+      float: right;
+    }
+  }
+
+  &--self {
+    background: $color-purple;
+    margin: .5rem 0 .5rem 2rem;
+    float: right;
+
+    &::after {
+      border-top-color: $color-purple;
+      border-left: .8rem solid transparent;
+      border-right: 0;
+      left: auto;
+      right: 1rem
+    }
+  }
+}
+
+.user-button {
+  position: fixed;
+  right: 2rem;
+  top: 3rem;
+}

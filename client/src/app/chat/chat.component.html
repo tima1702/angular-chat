@@ -1,0 +1,72 @@
+<div class="chat">
+  <button class="user-button" mat-fab (click)="openUserDialog()">
+    <mat-icon>person</mat-icon>
+  </button>
+  <div #chatHistory class="chat__history">
+    <div *ngFor="let message of messages">
+      <div
+        class="message-container"
+        [class.message-container--self]="user.id == message.msg.userId">
+        <mat-card
+          class="chat__message message"
+          *ngIf="message.type == 'message'"
+          [class.message--self]="user.id == message.msg.userId">
+
+          <div class="message__header">
+            <h3 class="message__author">
+              {{ message.msg.userName }}
+            </h3>
+            <span class="message__date">
+              {{ message.date }}
+            </span>
+          </div>
+          <p class="message__text">
+            {{ message.msg.msg }}
+          </p>
+        </mat-card>
+
+        <div *ngIf="message.msg.userAvatar">
+          <img
+            class="message__avatar"
+            src="{{ message.msg.userAvatar }}"
+            alt="{{ message.msg.userName }}'s avatar"
+            [class.message__avatar--self]="user.id == message.msg.userId">
+        </div>
+      </div>
+
+      <div class="chat__notification"
+           *ngIf="message.type == 'user'">
+        <span>{{ message.msg.userData.name }} has joined the chat!</span>
+      </div>
+
+      <div class="chat__notification"
+           *ngIf="message.type == 'leave'">
+        <span>{{ message.msg.userData.name }} has left the chat!</span>
+      </div>
+
+      <div class="chat__notification"
+           *ngIf="message.type == 'changeName'">
+        <span>{{ message.msg.oldUser.name }} in now {{ message.msg.newUser.name }}!</span>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="messageForm" class="chat__form" (ngSubmit)="onSubmit(messageForm.value)">
+    <div class="chat__form-field">
+      <!--      {{isTyping}}-->
+      <mat-form-field class="chat__form-input" >
+        <input
+            #inputMessage
+            matInput
+            placeholder="Type your message here..."
+            maxlength="140"
+            formControlName="message"
+            (keyup.enter)="onSubmit(messageForm.value)">
+        <!--          (keyup)="onKey($event)">-->
+        <mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
+      </mat-form-field>
+
+      <button class="chat__form-submit" mat-raised-button color="primary">Send</button>
+    </div>
+  </form>
+</div>
