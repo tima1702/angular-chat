@@ -2,7 +2,14 @@
   <app-users-list></app-users-list>
   <ul class="sidenav-list">
     <li class="sidenav-list__item">
-      <button class="menu-button" mat-button (click)="onSupportClick()">Write our support hero!</button>
+      <button
+        class="menu-button"
+        mat-raised-button
+        color="primary"
+        (click)="onSupportClick()"
+      >
+        Write our support hero!
+      </button>
     </li>
     <li>
       <button class="menu-button" mat-button (click)="onSignOut()">Sign out</button>
